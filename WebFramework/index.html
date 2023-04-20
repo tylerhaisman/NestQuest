@@ -91,7 +91,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <div class="dropdown">
-                    <button class="dropbtn">Bedrooms</button>
+                    <button class="dropbtn" id="bedroom-dropdown" >Bedrooms</button>
                     <div class="dropdown-content">
                       <a href="#">One</a>
                       <a href="#">Two</a>
@@ -104,7 +104,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="dropdown">
-                    <button class="dropbtn">Bathrooms</button>
+                    <button class="dropbtn" id="bathroom-dropdown" >Bathrooms</button>
                     <div class="dropdown-content">
                       <a href="#">One</a>
                       <a href="#">Two</a>
@@ -120,7 +120,7 @@
             <div class="price">
               <h2>What is your price range?</h2>
               <div class="slidecontainer">
-                <input id="slider" type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                <input id="slider" type="range" min="1" max="100" value="50" class="slider" id="myRange"> <!--Updated to match correct prices-->
                 <div class="parameterssl">
                   <div class="leftsl">
                     <p>$0 per month</p>
@@ -136,7 +136,7 @@
             </div>
               <h2>Lastly, please enter a location.</h2>
               <input type="search" id="search" name="location" class="search-bar" placeholder="Gainesville, FL">
-              <button class="searchbtn">Search</button>
+              <button class="searchbtn" id = "searchBtn">Search</button>
           </div>
       </div>
       </section>
@@ -165,6 +165,7 @@
         </div>
       </section>
     <script src="app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6yoDV_1HjU2C-xSNFNU6_q2d3aAmjTv0&libraries=places"></script>
     <script>
       // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
