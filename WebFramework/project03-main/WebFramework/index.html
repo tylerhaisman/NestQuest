@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name = "viewport" content = "with = device-width, initial-scale = 1.0">
+        <meta name="theme-color" content="#004FFF"/>
+        <title>NestQuest</title>
+        <link rel="icon" type="image/png" href="images/circlelogo.png"/>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;600&family=Audiowide&family=Exo+2:ital,wght@0,400;0,900;1,100&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      </head>
+    <body>
+      <header id="header">
+        <div class="content">
+          <a href="index.html#homecover"><img class="mainlogo" src="images/logo1.png" alt=""></a>
+          <a href="index.html#aboutme"><button class="headerbtn">Get Started</button></a>
+        </div>
+    </header>
+      <section id="homecover" class="homecover">
+        <div class="content">
+          <div class="homeelements">
+            <div id="title" class="title">
+              <div class="row">
+                <div class="col-md-6">
+                  <h1>Take your home search to the next level.</h1>
+              <a href="#aboutme"><button class="titlebtn">Let's Get Started</button></a>
+                </div>
+                <div class="col-md-6">
+                  <div class="homeimg">
+                    <img src="images/house.png" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="buttons">
+            <button>About Me</button>
+            <button>Projects</button>
+            <button>Contact Me</button>
+          </div> -->
+        </div>
+      </section>
+      <section id="aboutme" class="aboutme">
+        <div class="content">
+          <h1>Let's learn a bit more about your preferences.</h1>
+          <div class="messagebox">
+            <div class="message">
+              <div class="hobbies">
+                <h2>First, please tell us about your hobbies.</h2>
+                <div class="options">
+              <div class="row">
+                  <div class="col-md-3">
+                    <input type="checkbox" id="nightlife">
+                    <label for="nightlife">Nightlife</label>
+                  </div>
+                  <div class="col-md-3">
+                    <input type="checkbox" id="gyms">
+                    <label for="gyms">Gyms</label>
+                  </div>
+                  <div class="col-md-3">
+                    <input type="checkbox" id="parks">
+                    <label for="parks">Parks</label>
+                  </div>
+                  <div class="col-md-3">
+                    <input type="checkbox" id="sports">
+                    <label for="sports">Sports</label>
+                  </div>
+              </div>
+              <div class="options2">
+              <div class="row">
+                  <div class="col-md-3">
+                    <input type="checkbox" id="shopping">
+                    <label for="shopping">Shopping</label>
+                  </div>
+                  <div class="col-md-3">
+                    <input type="checkbox" id="food">
+                    <label for="food">Food</label>
+                  </div>
+                  <div class="col-md-3">
+                    <input type="checkbox" id="academics">
+                    <label for="academics">Academics</label>
+                  </div>
+                  <div class="col-md-3">
+                    <input type="checkbox" id="theatre">
+                    <label for="theatre">Theatre</label>
+                  </div>
+              </div>
+            </div>
+          </div>
+              </div>
+              <div class="bedbath">
+                <h2>How many bedrooms and bathrooms must your new home have?</h2>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="dropdown">
+                      <h1>Bedrooms:</h1>
+                      <form>
+                        <label for="bedroom-dropdown"></label>
+                        <select name="bedroom-dropdown" id="bedroom-dropdown" style="font-size: 16px; font-family: p;">
+                          <option value="choose">Choose An Option</option>
+                          <option value="One">One</option>
+                          <option value="Two">Two</option>
+                          <option value="Three">Three</option>
+                          <option value="Four">Four</option>
+                          <option value="Five">Five</option>
+                          <option value="Six-or-more">Six or more</option>
+                        </select>
+                      </form>
+                    </div>
+                    <!-- <div class="dropdown">
+                      <button class="dropbtn" id="bedroom-dropdown" >Bedrooms</button>
+                      <div class="dropdown-content">
+                        <a href="#">One</a>
+                        <a href="#">Two</a>
+                        <a href="#">Three</a>
+                        <a href="#">Four</a>
+                        <a href="#">Five</a>
+                        <a href="#">Six or more</a>
+                      </div>
+                    </div> -->
+                  </div>
+                  <div class="col-md-6">
+                    <div class="dropdown">
+                      <h1>Bathrooms:</h1>
+                      <form>
+                        <label for="bathroom-dropdown"></label>
+                        <select name="bathroom-dropdown" id="bathroom-dropdown" style="font-size: 16px; font-family: p;">
+                          <option value="choose">Choose An Option</option>
+                          <option value="One">One</option>
+                          <option value="Two">Two</option>
+                          <option value="Three">Three</option>
+                          <option value="Four">Four</option>
+                          <option value="Five">Five</option>
+                          <option value="Six-or-more">Six or more</option>
+                        </select>
+                      </form>
+                    </div>
+                    <!-- <div class="dropdown">
+                      <button class="dropbtn" id="bathroom-dropdown" >Bathrooms</button>
+                      <div class="dropdown-content">
+                        <a href="#">One</a>
+                        <a href="#">Two</a>
+                        <a href="#">Three</a>
+                        <a href="#">Four</a>
+                        <a href="#">Five</a>
+                        <a href="#">Six or more</a>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+              <div class="price">
+                <h2>What is your price range?</h2>
+                <div class="slidecontainer">
+                  <input id="slider" type="range" min="1" max="100" value="50" class="slider" id="myRange"> <!--Updated to match correct prices-->
+                  <div class="parameterssl">
+                    <div class="leftsl">
+                      <p>$0 per month</p>
+                    </div>
+                    <div id="centersl" class="centersl">
+                      <p class="centersltext">Current: About $2000 per month</p>
+                    </div>
+                    <div class="rightsl">
+                      <p>$4000+ per month</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <h2>Lastly, please enter a location.</h2>
+                <input type="search" id="search" name="location" class="search-bar" placeholder="Gainesville, FL">
+                <button class="searchbtn" id = "searchBtn">Search</button>
+            </div>
+        </div>
+        </div>
+      </section>
+      <section class="highlights">
+        <div class="content">
+          <div class="highlightgroup">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="highlightbox">
+                  <h2>Option 1</h2>
+                  <img src="images/logo2.png" alt="">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="highlightbox">
+                  <h2>Option 2</h2>
+                  <img src="images/logo2.png" alt="">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="highlightbox">
+                  <h2>Option 3</h2>
+                  <img src="images/logo2.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <script src="app.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6yoDV_1HjU2C-xSNFNU6_q2d3aAmjTv0&libraries=places"></script>
+    <script>
+      // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyCm2abKTcc9kxkfU7n0bty34soSMqzX0BE",
+  authDomain: "tylerhaisman-27e94.firebaseapp.com",
+  projectId: "tylerhaisman-27e94",
+  storageBucket: "tylerhaisman-27e94.appspot.com",
+  messagingSenderId: "940720677640",
+  appId: "1:940720677640:web:0b68d666aba38860ce02bd",
+  measurementId: "G-EHV6F9L48Z"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+    </script>
+    </body>
+</html>
+
+
