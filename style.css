@@ -295,6 +295,10 @@ select{
   height: 40px;
   width: 180px;
   padding: 5px;
+  font-family: title2;
+  font-size: 16px;
+  position: relative;
+  z-index: 10;
 }
 
 .price{
@@ -405,7 +409,8 @@ select{
 }
 .highlights img{
   margin-top: 30px;
-  width: 200px;
+  width: 300px;
+  border-radius: 5px;
 }
 
 /* PROJECTS */
@@ -768,3 +773,62 @@ select{
     height: auto;
   }
 }
+
+.search-results {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100%;
+  z-index: 1;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.search-results div {
+  padding: 12px 16px;
+  cursor: pointer;
+}
+
+.search-results div:hover {
+  background-color: #ddd;
+}
+
+.search-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 600px; /* You can adjust this value to your desired width */
+}
+
+.search-bar {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+}
+
+.search-results {
+  position: relative;
+  z-index: 101; /* Make sure the z-index is higher than the search button's z-index (100) */
+  left: 0; /* Adjust the left position according to your layout */
+  background-color: white; /* Add a background color for visibility */
+  width: 100%; /* Set the width of the container */
+  padding: 20px; /* Add some padding for better appearance */
+}
+
+.dropdown {
+  position: relative;
+  z-index: 10;
+}
+
+.results {
+  height: 200px;
+  overflow-y: auto;
+}
+
+#search-results {
+  max-height: 200px; /* or whatever height you want */
+  overflow-y: auto;
+}
+

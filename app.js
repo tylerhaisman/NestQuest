@@ -1,3 +1,7 @@
+
+
+
+
 //header adjustments on scroll
 window.addEventListener("scroll", function(){
   var header = document.querySelector("header");
@@ -33,6 +37,7 @@ console.log("NestQuest Init...");
   // The code inside this function will be executed when the button is clicked
   searchBtn.addEventListener("click", function() 
   {
+
   //GETTING INPUTS
   //Gathering hobby inputs
   var nightlife = false;
@@ -73,17 +78,19 @@ console.log("NestQuest Init...");
   var baths = e.options[e.selectedIndex].text;
   console.log(baths);
 
+
 //Reading CSV file data (will work in browser)
 //Source: https://www.youtube.com/watch?v=WrI19Qp6Uoc&ab_channel=SouthBridge
 //Source: https://www.reddit.com/r/learnjavascript/comments/nf6iga/how_to_use_papaparse_for_a_local_csv_file_with_a/
   var data = [];
   var papa_csv = Papa.parse('datasets/MockData.csv', {
-    dymanicTyping: true,
+    dynanicTyping: true,
     download: true,
     header: true,
     delimiter:",",
     complete: function(results) {
         data = results.data;
+
 
         //We first need to filter out the datapoints that are not the correct bedroom and bathroom sizes
         // for(var i = 0; i < data.length; i++){
@@ -116,6 +123,8 @@ console.log("NestQuest Init...");
 
 
   //Gathering location input
+
+  //Make location just the state itself
   const location = document.getElementById("search");
   const enteredLocation = location.value;
   console.log(enteredLocation);
@@ -216,6 +225,11 @@ console.log("NestQuest Init...");
         //For each value in the appended array, we will get the sum of all selected distances of each datapoint
         for(var i = 0; i < data.length; i++){
 
+          // Filter data by state
+          if (data[i].State !== enteredLocation) {
+            data[i] = 0000;
+          }
+          console.log(data);
           var distGym = data[i].distGym;
           var distNightlife = data[i].distNightlife;
           var distParks = data[i].distParks;
@@ -257,6 +271,19 @@ console.log("NestQuest Init...");
         
         //variables created so we can conduct both sorts
         var quickData = data;
+        data = quickData;
+
+      for (let i = 0; i < 3; i++) {
+        let resultElement = document.getElementById("result" + (i + 1));
+        let addressElement = document.createElement("p");
+        addressElement.textContent = data[i].Address;
+        resultElement.appendChild(addressElement);
+
+        let cityElement = document.createElement("p");
+        cityElement.textContent = data[i].City + ", " + data[i].State + " " + data[i].Zip;
+        resultElement.appendChild(cityElement);
+      }
+
         var mergeData = data;
 
         //Invoking quick sort
@@ -287,6 +314,34 @@ console.log("NestQuest Init...");
         option.innerHTML = data[2].City + ", " + data[2].State + " " + data[2].Zip;
     }
   }); 
+
+  //Random Image to House
+  //Get Random Images 
+  const min = 1;
+  const max = 9;
+
+  //Random House Picture
+  let randomInt1 = Math.floor(Math.random() * (max - min + 1) + min);
+  let randomInt2 = Math.floor(Math.random() * (max - min + 1) + min);
+  while (randomInt2 === randomInt1) {
+    randomInt2 = Math.floor(Math.random() * (max - min + 1) + min);
+  }
+  let randomInt3 = Math.floor(Math.random() * (max - min + 1) + min);
+  while (randomInt3 === randomInt1 || randomInt3 === randomInt2) {
+    randomInt3 = Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  const firstimage = document.getElementById("option1box");
+  firstimage.src = "images/home" + randomInt1 + ".jpeg";
+
+  const secondimage = document.getElementById("option2box");
+  secondimage.src = "images/home" + randomInt2 + ".jpeg";
+
+  const thirdimage = document.getElementById("option3box");
+  thirdimage.src = "images/home" + randomInt3 + ".jpeg";
+  
+
+
 });
 
 //Quick Sort
@@ -385,3 +440,53 @@ function merge(array, left, mid, right){
     k++;
   }
 }
+
+const searchInput = document.getElementById('search');
+const searchResults = document.getElementById('search-results');
+
+// Create an empty array to store locations
+let locations = [];
+
+// Parse the CSV file
+Papa.parse('datasets/MockData.csv', {
+  download: true,
+  header: true,
+  complete: function (results) {
+    results.data.forEach((row) => {
+      // Assuming your CSV has columns named "City" and "State"
+      let city = row.City;
+      let state = row.State;
+      let location = `${city}, ${state}`;
+
+      // Add the location to the locations array
+      locations.push(location);
+    });
+  },
+});
+
+
+//Search Button Stuff
+searchInput.addEventListener('input', () => {
+  const value = searchInput.value.toLowerCase();
+  searchResults.innerHTML = '';
+
+  if (value.length === 0) {
+    searchResults.style.display = 'none';
+    return;
+  }
+
+  const filteredResults = locations.filter(location => location.toLowerCase().includes(value));
+  filteredResults.forEach(result => {
+    const div = document.createElement('div');
+    div.textContent = result;
+    div.addEventListener('click', () => {
+      searchInput.value = result;
+      searchResults.style.display = 'none';
+    });
+    searchResults.appendChild(div);
+  });
+
+  searchResults.style.display = filteredResults.length > 0 ? 'block' : 'none';
+});
+
+
