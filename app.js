@@ -61,19 +61,17 @@ console.log("NestQuest Init...");
   console.log(theatre);
 
   //Gathering bedroom and bathroom dropdown inputs
-  //IN PROGRESS
-
-
-  //Gathering price input
-  const priceMaxinput = document.getElementById("slider");
-  const priceMax = priceMaxinput.value; 
-  console.log(priceMaxinput.value * 40); //Adjust from the 100 scale to our custom pricing scale
-
-
-  //Gathering location input
-    const location = document.getElementById("search");
-    const enteredLocation = location.value;
-    console.log(enteredLocation);
+  //Source: https://stackoverflow.com/questions/1085801/get-selected-value-in-dropdown-list-using-javascript
+  //Bedrooms
+  var e = document.getElementById("bedroom-dropdown");
+  var value = e.value;
+  var beds = e.options[e.selectedIndex].text;
+  console.log(beds);
+  //Bathrooms
+  var e = document.getElementById("bedroom-dropdown");
+  var value = e.value;
+  var baths = e.options[e.selectedIndex].text;
+  console.log(baths);
 
 //Reading CSV file data (will work in browser)
 //Source: https://www.youtube.com/watch?v=WrI19Qp6Uoc&ab_channel=SouthBridge
@@ -84,28 +82,215 @@ console.log("NestQuest Init...");
     download: true,
     header: true,
     delimiter:",",
-    // step: function(result){
-    //   allData = result;
-    // },
     complete: function(results) {
         data = results.data;
 
-        //Since we are sorting by distance, we need to add up the relevant distances from each element in the array
-        var distanceArray = [];
+        //We first need to filter out the datapoints that are not the correct bedroom and bathroom sizes
+        // for(var i = 0; i < data.length; i++){
+        //   var LAT = data[i].LATITUDE;
+        //   var LONG = data[i].LONGITUDE;
+        //   var distGym = data[i].distGym;
+        //   var distNightlife = data[i].distNightlife;
+        //   var distParks = data[i].distParks;
+        //   var distSports = data[i].distSports;
+        //   var distShopping = data[i].distShopping;
+        //   var distFood = data[i].distFood;
+        //   var distAcademics = data[i].distAcademics;
+        //   var distTheatre = data[i].distTheatre;
+        //   console.log(LAT);
+        //   console.log(LONG);
+        //   console.log(distGym);
+        //   console.log(distNightlife);
+        //   console.log(distParks);
+        //   console.log(distSports);
+        //   console.log(distShopping);
+        //   console.log(distFood);
+        //   console.log(distAcademics);
+        //   console.log(distTheatre);
+        // }
 
-        //variables created 
+                //Gathering price input
+  const priceMaxinput = document.getElementById("slider");
+  const priceMax = priceMaxinput.value;
+  console.log(priceMaxinput.value * 40); //Adjust from the 100 scale to our custom pricing scale
+
+
+  //Gathering location input
+  const location = document.getElementById("search");
+  const enteredLocation = location.value;
+  console.log(enteredLocation);
+
+        for(var i = 0; i < data.length; i++){
+          //BEDROOMS
+          var dataBeds = Math.floor(data[i].Bedrooms/1000);
+          if(beds == "Six or more"){
+            if(dataBeds < 6){
+              data[i] = 0000;
+            }
+          }
+          else if(beds == "One"){
+            if(dataBeds != 1){
+              data[i] = 0000;
+            }
+          }
+          else if(beds == "Two"){
+            if(dataBeds != 2){
+              data[i] = 0000;
+            }
+          }
+          else if(beds == "Three"){
+            if(dataBeds != 3){
+              data[i] = 0000;
+            }
+          }
+          else if(beds == "Four"){
+            if(dataBeds != 4){
+              data[i] = 0000;
+            }
+          }
+          else if(beds == "Five"){
+            if(dataBeds != 5){
+              data[i] = 0000;
+            }
+          }
+          else{
+            //Print some error
+          }
+
+          //BATHROOMS
+          var dataBaths = Math.floor(data[i].Bathrooms/1000);
+          if(baths == "Six or more"){
+            if(dataBaths < 6){
+              data[i] = 0000;
+            }
+          }
+          else if(baths == "One"){
+            if(dataBaths != 1){
+              data[i] = 0000;
+            }
+          }
+          else if(baths == "Two"){
+            if(dataBaths != 2){
+              data[i] = 0000;
+            }
+          }
+          else if(baths == "Three"){
+            if(dataBaths != 3){
+              data[i] = 0000;
+            }
+          }
+          else if(baths == "Four"){
+            if(dataBaths != 4){
+              data[i] = 0000;
+            }
+          }
+          else if(baths == "Five"){
+            if(dataBaths != 5){
+              data[i] = 0000;
+            }
+          }
+          else{
+            //Print some error
+          }
+
+          //WHERE I AM STRUGGLING:
+          var price = data[i].Price;
+          if(price > priceMax){
+            data[i] = 0000;
+          }
+          // var loc = data[i].City + ", " + data[i].State;
+          // if(loc != enteredLocation){
+          //   data[i] = 0000;
+          // }
+        }
+        
+        
+        var appendedData = [];
+        for(var i = 0; i < data.length; i++){
+          if(data[i] != 0){
+            appendedData.push(data[i]);
+          }
+        }
+        data = appendedData;
+
+        //For each value in the appended array, we will get the sum of all selected distances of each datapoint
+        for(var i = 0; i < data.length; i++){
+
+          var distGym = data[i].distGym;
+          var distNightlife = data[i].distNightlife;
+          var distParks = data[i].distParks;
+          var distSports = data[i].distSports;
+          var distShopping = data[i].distShopping;
+          var distFood = data[i].distFood;
+          var distAcademics = data[i].distAcademics;
+          var distTheatre = data[i].distTheatre;
+
+          //total sum of all selected hobbies' distances
+          var sum = 0;
+
+          if(nightlife == true){
+            sum = Number(sum) + Number(distNightlife);
+          }
+          if(gyms == true){
+            sum = Number(sum) + Number(distGym);
+          }
+          if(parks == true){
+            sum = Number(sum) + Number(distParks);
+          }
+          if(sports == true){
+            sum = Number(sum) + Number(distSports);
+          }
+          if(shopping == true){
+            sum = Number(sum) + Number(distShopping);
+          }
+          if(food == true){
+            sum = Number(sum) + Number(distFood);
+          }
+          if(academics == true){
+            sum = Number(sum) + Number(distAcademics);
+          }
+          if(theatre == true){
+            sum = Number(sum) + Number(distTheatre);
+          }
+          data[i].sum = sum;
+        }
+        
+        //variables created so we can conduct both sorts
         var quickData = data;
         var mergeData = data;
 
-        //We code here
         //Invoking quick sort
+        var n = quickData.length;
+        quickSort(quickData, 0, n - 1);
+        console.log(quickData);
 
+        //Invoking merge sort
+        var n = mergeData.length;
+        mergeSort(mergeData, 0, n - 1);
+        console.log(mergeData);
+
+        data = quickData;
+
+        var option = document.getElementById("option1");
+        option.innerHTML = data[0].Address;
+        option = document.getElementById("city1");
+        option.innerHTML = data[0].City + ", " + data[0].State + " " + data[0].Zip;
+
+        var option = document.getElementById("option2");
+        option.innerHTML = data[1].Address;
+        option = document.getElementById("city2");
+        option.innerHTML = data[1].City + ", " + data[1].State + " " + data[1].Zip;
+
+        var option = document.getElementById("option3");
+        option.innerHTML = data[2].Address;
+        option = document.getElementById("city3");
+        option.innerHTML = data[2].City + ", " + data[2].State + " " + data[2].Zip;
     }
-}); 
+  }); 
 });
 
-//Quick Sort Outline:
-//source: Professor Aman's lecture slides on sorting
+//Quick Sort
+//Source: Professor Aman's lecture slides on sorting
 function quickSort(array, low, high){
   if(low < high){
     var pivot = partition(array, low, high);
@@ -115,19 +300,19 @@ function quickSort(array, low, high){
 }
 function partition(array, low, high){
   //selecting the pivot element
-  var pivot = array[low];
+  var pivot = array[low].sum;
   var up = low
   var down = high;
 
   while(up < down){
     for(var j = up; j < high; j++){
-      if(array[up] > pivot){
+      if(array[up].sum > pivot){
         break;
       }
       up++;
     }
     for(var j = high; j > low; j--){
-      if(array[down] < pivot){
+      if(array[down].sum < pivot){
         break;
       }
       down--;
@@ -145,8 +330,8 @@ function swap(array, i, j){
     array[j] = temp;
 }
 
-//Merge Sort outline
-//source: Professor Aman's lecture slides on sorting
+//Merge Sort
+//Source: Professor Aman's lecture slides on sorting
 //Notes: I would say that we should organize some of the google maps api information with this? 
 function mergeSort(array, left, right){
   if(left < right){
@@ -175,27 +360,27 @@ function merge(array, left, mid, right){
 
   while (i < n1 && j < n2) 
   {
-    if (X[i] <= Y[j]) 
+    if (X[i].sum <= Y[j].sum) 
     {
-      array[k] = X[i];
+      array[k].sum = X[i].sum;
       i++;
     } 
     else 
     {
-      array[k] = Y[j];
+      array[k].sum = Y[j].sum;
       j++;
     }
     k++;
   }
   while (i < n1) 
   {
-    array[k] = X[i];
+    array[k].sum = X[i].sum;
     i++;
     k++;
   }
   while (j < n2) 
   {
-    array[k] = Y[j];
+    array[k].sum = Y[j].sum;
     j++;
     k++;
   }

@@ -379,9 +379,8 @@ select{
   text-align: center;
 }
 .highlightgroup p{
-  margin-left: 30px;
+  font-family: title;
   font-size: 16px;
-  text-align: left;
 }
 .highlightgroup h2{
   font-family: title;
@@ -406,7 +405,7 @@ select{
 }
 .highlights img{
   margin-top: 30px;
-  width: 300px;
+  width: 200px;
 }
 
 /* PROJECTS */
