@@ -1,5 +1,4 @@
 /* FONTS */
-
 @font-face {
   font-family: title;
   src: url(fonts/Outfit-Bold.otf);
@@ -153,7 +152,7 @@ header.active img{
   text-align: center;
 }
 
-/* ABOUT ME */
+/* PREFERENCES UI */
 .aboutme{
   width: 100%;
   background-color: #fff;
@@ -250,7 +249,6 @@ header.active img{
   font-size: 18px;
   background: transparent;
   border-width: 3px;
-  /* background-color: white; */
   position: relative;
   cursor: pointer;
   box-shadow: 0px 0px 0 #fff;
@@ -368,14 +366,63 @@ select{
   margin-top: 10px;
   font-size: 14px;
 }
+.search-results {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100%;
+  z-index: 1;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.search-results div {
+  padding: 12px 16px;
+  cursor: pointer;
+}
+.search-results div:hover {
+  background-color: #ddd;
+}
+.search-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 600px; /* You can adjust this value to your desired width */
+}
+.search-bar {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+}
+.search-results {
+  position: relative;
+  z-index: 101; /* Make sure the z-index is higher than the search button's z-index (100) */
+  left: 0; /* Adjust the left position according to your layout */
+  background-color: white; /* Add a background color for visibility */
+  width: 100%; /* Set the width of the container */
+  padding: 20px; /* Add some padding for better appearance */
+  border-radius: 10px;
+}
+.dropdown {
+  position: relative;
+  z-index: 10;
+  font-family: p;
+}
+.results {
+  height: 200px;
+  overflow-y: auto;
+  font-family: p;
+}
+#search-results {
+  max-height: 200px; /* or whatever height you want */
+  overflow-y: auto;
+  font-family: p;
+}
 
-/* HIGHLIGHTS */
+/* HOUSING OUTPUT */
 .highlights{
   min-height: 30vh;
-  /* background-image: linear-gradient(
-    #fff 0%, #75c5e7 50%,
-    #2057AA 100%
-  ); */
 }
 .highlightgroup{
   margin-left: 5%;
@@ -445,7 +492,6 @@ select{
   width: 300px;
   border-radius: 5px;
 }
-
 /* TIMES */
 .times h1{
   font-family: title;
@@ -479,57 +525,3 @@ footer p{
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-style: normal;
 }
-.search-results {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 100%;
-  z-index: 1;
-  overflow: auto;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-.search-results div {
-  padding: 12px 16px;
-  cursor: pointer;
-}
-.search-results div:hover {
-  background-color: #ddd;
-}
-.search-container {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  max-width: 600px; /* You can adjust this value to your desired width */
-}
-.search-bar {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 8px 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-}
-.search-results {
-  position: relative;
-  z-index: 101; /* Make sure the z-index is higher than the search button's z-index (100) */
-  left: 0; /* Adjust the left position according to your layout */
-  background-color: white; /* Add a background color for visibility */
-  width: 100%; /* Set the width of the container */
-  padding: 20px; /* Add some padding for better appearance */
-  border-radius: 10px;
-}
-.dropdown {
-  position: relative;
-  z-index: 10;
-  font-family: p;
-}
-.results {
-  height: 200px;
-  overflow-y: auto;
-  font-family: p;
-}
-#search-results {
-  max-height: 200px; /* or whatever height you want */
-  overflow-y: auto;
-  font-family: p;
-}
-
