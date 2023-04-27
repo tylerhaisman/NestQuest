@@ -86,13 +86,25 @@ console.log("NestQuest Init...");
                 //Invoking quick sort
                 var quickData = data;
                 var n = quickData.length;
+                //Tracking time for quick sort
+                //source: https://stackoverflow.com/questions/6341774/keep-track-of-how-much-time-is-spent-showing-certain-elements-on-the-page
+                var start = new Date();
                 quickSort(quickData, 0, n - 1);
+                var elapsed = new Date() - start;
+                document.querySelector(".qst").innerText = elapsed + " " + "milliseconds";
         
                 //Invoking merge sort
                 var mergeData = data;
                 var n = mergeData.length;
+                //Tracking time for merge sort
+                //source: https://stackoverflow.com/questions/6341774/keep-track-of-how-much-time-is-spent-showing-certain-elements-on-the-page
+                var start = new Date();
                 mergeSort(mergeData, 0, n - 1);
-        
+                var elapsed = new Date() - start
+                document.querySelector(".mst").innerText = elapsed + " " + "milliseconds";
+
+                document.querySelector(".times").style.visibility = 'visible';
+
                 data = quickData;
         
 
@@ -439,18 +451,18 @@ searchInput.addEventListener('input', () => {
     searchResults.style.display = 'none';
     return;
   }
-
   const filteredResults = locations.filter(location => location.toLowerCase().includes(value));
   filteredResults.forEach(result => {
-    const div = document.createElement('div');
-    div.textContent = result;
-    div.addEventListener('click', () => {
-      searchInput.value = result;
-      searchResults.style.display = 'none';
-    });
-    searchResults.appendChild(div);
+    if(result != "undefined"){
+      const div = document.createElement('div');
+      div.textContent = result;
+      div.addEventListener('click', () => {
+        searchInput.value = result;
+        searchResults.style.display = 'none';
+      });
+      searchResults.appendChild(div);
+    }
   });
-
   searchResults.style.display = filteredResults.length > 0 ? 'block' : 'none';
 });
 
