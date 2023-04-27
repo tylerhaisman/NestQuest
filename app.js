@@ -1,4 +1,6 @@
-
+//Tyler Haisman and Eli Campos
+//Project 03
+//Data Structures and Algorithms
 
 
 
@@ -42,28 +44,20 @@ console.log("NestQuest Init...");
   //Gathering hobby inputs
   var nightlife = false;
   nightlife = document.querySelector(".nightlife").checked;
-  console.log(nightlife);
   var gyms = false;
   gyms = document.querySelector(".gyms").checked;
-  console.log(gyms);
   var parks = false;
   parks = document.querySelector(".parks").checked;
-  console.log(parks);
   var sports = false;
   sports = document.querySelector(".sports").checked;
-  console.log(sports);
   var shopping = false;
   shopping = document.querySelector(".shopping").checked;
-  console.log(shopping);
   var food = false;
   food = document.querySelector(".food").checked;
-  console.log(food);
   var academics = false;
   academics = document.querySelector(".academics").checked;
-  console.log(academics);
   var theatre = false;
   theatre = document.querySelector(".theatre").checked;
-  console.log(theatre);
 
   //Gathering bedroom and bathroom dropdown inputs
   //Source: https://stackoverflow.com/questions/1085801/get-selected-value-in-dropdown-list-using-javascript
@@ -71,12 +65,10 @@ console.log("NestQuest Init...");
   var e = document.getElementById("bedroom-dropdown");
   var value = e.value;
   var beds = e.options[e.selectedIndex].text;
-  console.log(beds);
   //Bathrooms
   var e = document.getElementById("bedroom-dropdown");
   var value = e.value;
   var baths = e.options[e.selectedIndex].text;
-  console.log(baths);
 
 
 //Reading CSV file data (will work in browser)
@@ -118,8 +110,8 @@ console.log("NestQuest Init...");
 
                 //Gathering price input
   const priceMaxinput = document.getElementById("slider");
-  const priceMax = priceMaxinput.value;
-  console.log(priceMaxinput.value * 40); //Adjust from the 100 scale to our custom pricing scale
+  var priceMax = priceMaxinput.value * 40;
+  // console.log(priceMaxinput.value * 40); //Adjust from the 100 scale to our custom pricing scale
 
 
   //Gathering location input
@@ -127,7 +119,6 @@ console.log("NestQuest Init...");
   //Make location just the state itself
   const location = document.getElementById("search");
   const enteredLocation = location.value;
-  console.log(enteredLocation);
 
         for(var i = 0; i < data.length; i++){
           //BEDROOMS
@@ -201,16 +192,14 @@ console.log("NestQuest Init...");
           else{
             //Print some error
           }
-
-          //WHERE I AM STRUGGLING:
           var price = data[i].Price;
           if(price > priceMax){
             data[i] = 0000;
           }
-          // var loc = data[i].City + ", " + data[i].State;
-          // if(loc != enteredLocation){
-          //   data[i] = 0000;
-          // }
+          //Filter data by state
+          if (data[i].State != enteredLocation) {
+            data[i] = 0000;
+          }
         }
         
         
@@ -224,12 +213,6 @@ console.log("NestQuest Init...");
 
         //For each value in the appended array, we will get the sum of all selected distances of each datapoint
         for(var i = 0; i < data.length; i++){
-
-          // Filter data by state
-          if (data[i].State !== enteredLocation) {
-            data[i] = 0000;
-          }
-          console.log(data);
           var distGym = data[i].distGym;
           var distNightlife = data[i].distNightlife;
           var distParks = data[i].distParks;
@@ -268,35 +251,34 @@ console.log("NestQuest Init...");
           }
           data[i].sum = sum;
         }
-        
-        //variables created so we can conduct both sorts
-        var quickData = data;
-        data = quickData;
+      
+        //What is this?
+        //It is throwing an error but when I took it out it worked perfectly lol
 
-      for (let i = 0; i < 3; i++) {
-        let resultElement = document.getElementById("result" + (i + 1));
-        let addressElement = document.createElement("p");
-        addressElement.textContent = data[i].Address;
-        resultElement.appendChild(addressElement);
+      // for (let i = 0; i < 3; i++) {
+      //   let resultElement = document.getElementById("result" + (i + 1));
+      //   let addressElement = document.createElement("p");
+      //   addressElement.textContent = data[i].Address;
+      //   resultElement.appendChild(addressElement);
 
-        let cityElement = document.createElement("p");
-        cityElement.textContent = data[i].City + ", " + data[i].State + " " + data[i].Zip;
-        resultElement.appendChild(cityElement);
-      }
-
-        var mergeData = data;
+      //   let cityElement = document.createElement("p");
+      //   cityElement.textContent = data[i].City + ", " + data[i].State + " " + data[i].Zip;
+      //   resultElement.appendChild(cityElement);
+      // }
 
         //Invoking quick sort
+        var quickData = data;
         var n = quickData.length;
         quickSort(quickData, 0, n - 1);
-        console.log(quickData);
 
         //Invoking merge sort
+        var mergeData = data;
         var n = mergeData.length;
         mergeSort(mergeData, 0, n - 1);
-        console.log(mergeData);
 
         data = quickData;
+
+        console.log(data);
 
         var option = document.getElementById("option1");
         option.innerHTML = data[0].Address;
@@ -312,6 +294,17 @@ console.log("NestQuest Init...");
         option.innerHTML = data[2].Address;
         option = document.getElementById("city3");
         option.innerHTML = data[2].City + ", " + data[2].State + " " + data[2].Zip;
+
+  //Make options visible
+  if(document.getElementById("option1").textContent != "Option 1"){
+    document.getElementById("box1").style.visibility = 'visible';
+  }
+  if(document.getElementById("option2").textContent != "Option 2"){
+    document.getElementById("box2").style.visibility = 'visible';
+  }
+  if(document.getElementById("option3").textContent != "Option 3"){
+    document.getElementById("box3").style.visibility = 'visible';
+  }
     }
   }); 
 
@@ -339,9 +332,6 @@ console.log("NestQuest Init...");
 
   const thirdimage = document.getElementById("option3box");
   thirdimage.src = "images/home" + randomInt3 + ".jpeg";
-  
-
-
 });
 
 //Quick Sort
@@ -454,16 +444,17 @@ Papa.parse('datasets/MockData.csv', {
   complete: function (results) {
     results.data.forEach((row) => {
       // Assuming your CSV has columns named "City" and "State"
-      let city = row.City;
+      //let city = row.City;
       let state = row.State;
-      let location = `${city}, ${state}`;
-
+      let location = `${state}`;
+      //let location = state;
       // Add the location to the locations array
-      locations.push(location);
+      if(locations.indexOf(location) == -1){
+        locations.push(location);
+      }
     });
   },
 });
-
 
 //Search Button Stuff
 searchInput.addEventListener('input', () => {
