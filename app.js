@@ -83,35 +83,22 @@ console.log("NestQuest Init...");
     complete: function(results) {
         data = results.data;
 
-
-        //We first need to filter out the datapoints that are not the correct bedroom and bathroom sizes
-        // for(var i = 0; i < data.length; i++){
-        //   var LAT = data[i].LATITUDE;
-        //   var LONG = data[i].LONGITUDE;
-        //   var distGym = data[i].distGym;
-        //   var distNightlife = data[i].distNightlife;
-        //   var distParks = data[i].distParks;
-        //   var distSports = data[i].distSports;
-        //   var distShopping = data[i].distShopping;
-        //   var distFood = data[i].distFood;
-        //   var distAcademics = data[i].distAcademics;
-        //   var distTheatre = data[i].distTheatre;
-        //   console.log(LAT);
-        //   console.log(LONG);
-        //   console.log(distGym);
-        //   console.log(distNightlife);
-        //   console.log(distParks);
-        //   console.log(distSports);
-        //   console.log(distShopping);
-        //   console.log(distFood);
-        //   console.log(distAcademics);
-        //   console.log(distTheatre);
-        // }
+                //Invoking quick sort
+                var quickData = data;
+                var n = quickData.length;
+                quickSort(quickData, 0, n - 1);
+        
+                //Invoking merge sort
+                var mergeData = data;
+                var n = mergeData.length;
+                mergeSort(mergeData, 0, n - 1);
+        
+                data = quickData;
+        
 
                 //Gathering price input
   const priceMaxinput = document.getElementById("slider");
   var priceMax = priceMaxinput.value * 40;
-  // console.log(priceMaxinput.value * 40); //Adjust from the 100 scale to our custom pricing scale
 
 
   //Gathering location input
@@ -155,6 +142,7 @@ console.log("NestQuest Init...");
           }
           else{
             //Print some error
+            data[i] = 0000;
           }
 
           //BATHROOMS
@@ -190,7 +178,7 @@ console.log("NestQuest Init...");
             }
           }
           else{
-            //Print some error
+            data[i] = 0000;
           }
           var price = data[i].Price;
           if(price > priceMax){
@@ -201,7 +189,6 @@ console.log("NestQuest Init...");
             data[i] = 0000;
           }
         }
-        
         
         var appendedData = [];
         for(var i = 0; i < data.length; i++){
@@ -251,60 +238,38 @@ console.log("NestQuest Init...");
           }
           data[i].sum = sum;
         }
-      
-        //What is this?
-        //It is throwing an error but when I took it out it worked perfectly lol
+    
+try{
+  var option = document.getElementById("option1");
+  option.innerHTML = data[0].Address;
+  option = document.getElementById("city1");
+  option.innerHTML = data[0].City + ", " + data[0].State + " " + data[0].Zip;
+  document.getElementById("box1").style.visibility = 'visible';
+}
+catch(err){
+  document.getElementById("box1").style.visibility = 'hidden';
+}
 
-      // for (let i = 0; i < 3; i++) {
-      //   let resultElement = document.getElementById("result" + (i + 1));
-      //   let addressElement = document.createElement("p");
-      //   addressElement.textContent = data[i].Address;
-      //   resultElement.appendChild(addressElement);
-
-      //   let cityElement = document.createElement("p");
-      //   cityElement.textContent = data[i].City + ", " + data[i].State + " " + data[i].Zip;
-      //   resultElement.appendChild(cityElement);
-      // }
-
-        //Invoking quick sort
-        var quickData = data;
-        var n = quickData.length;
-        quickSort(quickData, 0, n - 1);
-
-        //Invoking merge sort
-        var mergeData = data;
-        var n = mergeData.length;
-        mergeSort(mergeData, 0, n - 1);
-
-        data = quickData;
-
-        console.log(data);
-
-        var option = document.getElementById("option1");
-        option.innerHTML = data[0].Address;
-        option = document.getElementById("city1");
-        option.innerHTML = data[0].City + ", " + data[0].State + " " + data[0].Zip;
-
-        var option = document.getElementById("option2");
+try{
+  var option = document.getElementById("option2");
         option.innerHTML = data[1].Address;
         option = document.getElementById("city2");
         option.innerHTML = data[1].City + ", " + data[1].State + " " + data[1].Zip;
-
-        var option = document.getElementById("option3");
+        document.getElementById("box2").style.visibility = 'visible';
+}
+catch(err){
+  document.getElementById("box2").style.visibility = 'hidden';
+}
+try{
+  var option = document.getElementById("option3");
         option.innerHTML = data[2].Address;
         option = document.getElementById("city3");
         option.innerHTML = data[2].City + ", " + data[2].State + " " + data[2].Zip;
-
-  //Make options visible
-  if(document.getElementById("option1").textContent != "Option 1"){
-    document.getElementById("box1").style.visibility = 'visible';
-  }
-  if(document.getElementById("option2").textContent != "Option 2"){
-    document.getElementById("box2").style.visibility = 'visible';
-  }
-  if(document.getElementById("option3").textContent != "Option 3"){
-    document.getElementById("box3").style.visibility = 'visible';
-  }
+        document.getElementById("box3").style.visibility = 'visible';
+}
+catch(err){
+  document.getElementById("box3").style.visibility = 'hidden';
+}
     }
   }); 
 
@@ -337,9 +302,13 @@ console.log("NestQuest Init...");
 //Quick Sort
 //Source: Professor Aman's lecture slides on sorting
 function quickSort(array, low, high){
+  //If the index of the first element is less than the index of the last element (i.e. they are not equal)
   if(low < high){
+    //choosing a pivot
     var pivot = partition(array, low, high);
+    //calling quick sort on the left side of the pivot
     quickSort(array, low, pivot - 1);
+    //and on the right side of the pivot
     quickSort(array, pivot + 1, high);
   }
 }
@@ -379,10 +348,15 @@ function swap(array, i, j){
 //Source: Professor Aman's lecture slides on sorting
 //Notes: I would say that we should organize some of the google maps api information with this? 
 function mergeSort(array, left, right){
+  //checking to see if the first element's index is less than the last element's index
   if(left < right){
+    //getting a midpoint so we can splice the array
     var mid = Math.floor(left + (right - left) / 2);
+    //sorting left side of the array
     mergeSort(array, left, mid);
+    //sorting right side of the array
     mergeSort(array, mid + 1, right);
+    //merging them together including the mid value
     merge(array, left, mid, right);
   }
 }
