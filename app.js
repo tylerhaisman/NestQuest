@@ -105,9 +105,15 @@ console.log("NestQuest Init...");
 
   //Make location just the state itself
   const location = document.getElementById("search");
-  const enteredLocation = location.value;
-
+  //Array with 1 index makes it so that it fetchs state and the 0 index will be for the first option
+  const enteredLocation = (location.value).split(", ")[1];
+  const enteredLocationcity = (location.value).split(", ")[0];
         for(var i = 0; i < data.length; i++){
+          //If it's the extact location skip for first option
+          if(data[i].City == enteredLocationcity && data[i].State == enteredLocation)
+          {
+            continue;
+          }
           //BEDROOMS
           var dataBeds = Math.floor(data[i].Bedrooms/1000);
           if(beds == "Six or more"){
@@ -191,12 +197,24 @@ console.log("NestQuest Init...");
         }
         
         var appendedData = [];
+
+        //Rest of the options
         for(var i = 0; i < data.length; i++){
-          if(data[i] != 0){
+          if(data[i].City == enteredLocationcity && data[i].State == enteredLocation)
+          {
+            appendedData.unshift(data[i]);
+          }
+          else if(data[i] != 0){
             appendedData.push(data[i]);
           }
+
         }
         data = appendedData;
+        console.log(appendedData);
+        console.log(data);
+
+
+    
 
         //For each value in the appended array, we will get the sum of all selected distances of each datapoint
         for(var i = 0; i < data.length; i++){
@@ -405,6 +423,7 @@ function merge(array, left, mid, right){
   }
 }
 
+
 const searchInput = document.getElementById('search');
 const searchResults = document.getElementById('search-results');
 
@@ -418,21 +437,29 @@ Papa.parse('datasets/MockData.csv', {
   complete: function (results) {
     results.data.forEach((row) => {
       // Assuming your CSV has columns named "City" and "State"
-      //let city = row.City;
+      let city = row.City;
       let state = row.State;
-      let location = `${state}`;
-      //let location = state;
+      let location = `${city}, ${state}`;
+
       // Add the location to the locations array
-      if(locations.indexOf(location) == -1){
-        locations.push(location);
-      }
+      locations.push(location);
     });
   },
 });
 
 //Search Button Stuff
 searchInput.addEventListener('input', () => {
+
+
   const value = searchInput.value.toLowerCase();
+
+ 
+   //reduce Search time
+  // Check if the input value has a minimum of 2 characters
+  if (value.length < 3) {
+    return;
+  }
+
   searchResults.innerHTML = '';
 
   if (value.length === 0) {
