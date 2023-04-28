@@ -225,11 +225,6 @@ console.log("NestQuest Init...");
 
         }
         data = appendedData;
-        console.log(appendedData);
-        console.log(data);
-
-
-    
 
         //For each value in the appended array, we will get the sum of all selected distances of each datapoint
         for(var i = 0; i < data.length; i++){
