@@ -2,8 +2,6 @@
 //Project 03
 //Data Structures and Algorithms
 
-
-
 //header adjustments on scroll
 window.addEventListener("scroll", function(){
   var header = document.querySelector("header");
@@ -32,6 +30,9 @@ $('.slider').on('change', function() {
   $('.centersltext').html(fullStatement);
 });
 
+//loader
+var loader = document.querySelector(".lds-ring");
+
 console.log("NestQuest Init...");
 
   // Get the search button element by its ID
@@ -39,6 +40,8 @@ console.log("NestQuest Init...");
   // The code inside this function will be executed when the button is clicked
   searchBtn.addEventListener("click", function() 
   {
+    //making loader visible
+    loader.style.visibility = 'visible';
 
   //GETTING INPUTS
   //Gathering hobby inputs
@@ -300,13 +303,15 @@ try{
 catch(err){
   document.getElementById("box3").style.visibility = 'hidden';
 }
+
+loader.style.visibility = 'hidden';
     }
   }); 
 
   //Random Image to House
   //Get Random Images 
   const min = 1;
-  const max = 9;
+  const max = 25;
 
   //Random House Picture
   let randomInt1 = Math.floor(Math.random() * (max - min + 1) + min);
@@ -435,7 +440,6 @@ function merge(array, left, mid, right){
   }
 }
 
-
 const searchInput = document.getElementById('search');
 const searchResults = document.getElementById('search-results');
 
@@ -461,11 +465,7 @@ Papa.parse('datasets/MockData.csv', {
 
 //Search Button Stuff
 searchInput.addEventListener('input', () => {
-
-
   const value = searchInput.value.toLowerCase();
-
- 
    //reduce Search time
   // Check if the input value has a minimum of 2 characters
   if (value.length < 3) {
@@ -492,5 +492,3 @@ searchInput.addEventListener('input', () => {
   });
   searchResults.style.display = filteredResults.length > 0 ? 'block' : 'none';
 });
-
-
