@@ -2,6 +2,12 @@
 //Project 03
 //Data Structures and Algorithms
 
+//x for notice
+const xOut = document.getElementById("xout");
+xOut.addEventListener("click", function(){
+  document.getElementById("notice").style.visibility = "hidden";
+});
+
 //header adjustments on scroll
 window.addEventListener("scroll", function(){
   var header = document.querySelector("header");
@@ -10,9 +16,14 @@ window.addEventListener("scroll", function(){
   headerbtn.classList.toggle("active", window.scrollY > 80);
   if(window.scrollY > 80){
     document.querySelector(".mainlogo").src = "images/logo2.png";
+    //page theme color
+    const theme = document.getElementById("pageclr");
+    theme.setAttribute("content", "#ffffffe6");
   }
   else{
     document.querySelector(".mainlogo").src = "images/logo1.png";
+    const theme = document.getElementById("pageclr");
+    theme.setAttribute("content", "#004FFF");
   }
 })
 

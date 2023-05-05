@@ -53,6 +53,7 @@ button:hover {
 .content{
   max-width: 1500px;
   margin: auto;
+  overflow: hidden;
 }
 
 /* HEADER */
@@ -66,7 +67,7 @@ header{
   display: flex;
 }
 header.active{
-  background-color: rgb(255, 255, 255, 0.9);
+  background-color: #ffffffe6;
 }
 header img{
   width: 200px;
@@ -75,21 +76,19 @@ header img{
   padding: 20px;
 }
 header.active img{
-  padding: 30px;
+  /* padding-left: 10px;
   padding-bottom: 10px;
   padding-right: 10px;
-  padding-top: 10px;
+  padding-top: 10px; */
   scale: 0.8;
-  width: 180px;
-  height: auto;
+  margin-top: -15px;
 }
 .headerbtn{
   float: right;
-  font-size: 18px;
+  font-size: 16px;
   width: 170px;
-  height: 60px;
+  height: 50px;
   color: #004FFF;
-  padding-left: 30px;
   margin: 20px;
   transition: 0.2s;
   font-family: title2;
@@ -100,15 +99,35 @@ header.active img{
   box-shadow: 0px 0px 0px #fff;
   background-color: #004FFF;
   color: white;
-  margin-top: 5px;
+  margin-top: 10px;
   border-width: 0;
+  margin-right: 5px;
 }
 .headerbtn.active:hover{
   scale: 0.85;
 }
+@media(max-width: 435px){
+  header img{
+    width: 150px;
+  }
+  .headerbtn{
+    font-size: 16px;
+    width: 170px;
+    height: 50px;
+  }
+  header.active img{
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    margin-top: 0;
+    scale: 0.8;
+  }
+}
 
 /* HOME COVER */
 .homecover{
+  width: 100%;
   background-color: #004FFF;
   min-height: 100vh;
   color: #ffffff;
@@ -130,6 +149,7 @@ header.active img{
   padding-top: 250px;
 }
 .titlebtn{
+  position: relative;
   font-family: title2;
   margin-top: 80px;
   margin-bottom: 100px;
@@ -137,6 +157,7 @@ header.active img{
   width: 200px;
   height: 60px;
   color: #004FFF;
+  box-shadow: 0 0 0 #fff;
 }
 @keyframes floating {
   0% { transform: translate(0,  0px); }
@@ -151,6 +172,14 @@ header.active img{
 .homeimg{
   text-align: center;
 }
+@media(max-width: 991px){
+  .title{
+    padding-top: 0;
+  }
+  .homecover img{
+    margin-top: 0;
+  }
+}
 
 /* PREFERENCES UI */
 .aboutme{
@@ -164,7 +193,7 @@ header.active img{
 .aboutme h1{
   padding-left: 10%;
   padding-right: 10%;
-  padding-top: 100px;
+  padding-top: 30px;
   font-family: title;
   font-size: 70px;
 }
@@ -173,12 +202,20 @@ header.active img{
   font-size: 40px;
   color: white;
 }
-
+@media(max-width: 991px){
+  .aboutme h1{
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 100px;
+    font-family: title;
+    font-size: 50px;
+  }
+}
 .messagebox{
   text-align: center;
   background-color: #004FFF;
   width: 90%;
-  margin: 5%;
+  margin: auto;
   margin-bottom: 0;
   margin-top: 100px;
   border-radius: 10px;
@@ -274,6 +311,15 @@ header.active img{
 .hobbies{
   margin-bottom: 100px;
 }
+.selections{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 30px;
+}
+.selections .node{
+  padding: 5px;
+}
 .options{
   margin-top: 40px;
 }
@@ -362,6 +408,11 @@ select{
   left: 0;
   right: 0;
 }
+@media(max-width: 991px){
+  .centersl{
+    margin-top: 40px;
+  }
+}
 .parameterssl{
   margin-top: 10px;
   font-size: 14px;
@@ -448,12 +499,12 @@ select{
     text-align: center;
     transition: 0.2s;
     min-height: 280px;
-    box-shadow: 0 0 40px #c5cad5;
+    box-shadow: 0 0 20px #c5cad582;
     margin-top: 50px;
     visibility: hidden;
 }
 .highlightbox1:hover{
-  box-shadow: 0px 0px 100px #c5cad5;
+  box-shadow: 0px 0px 60px #c5cad5;
 }
 .highlightbox2{
   flex-basis: 31%;
@@ -464,12 +515,12 @@ select{
     text-align: center;
     transition: 0.2s;
     min-height: 280px;
-    box-shadow: 0 0 40px #c5cad5;
+    box-shadow: 0 0 20px #c5cad582;
     margin-top: 50px;
     visibility: hidden;
 }
 .highlightbox2:hover{
-  box-shadow: 0px 0px 100px #c5cad5;
+  box-shadow: 0px 0px 60px #c5cad5;
 }
 .highlightbox3{
   flex-basis: 31%;
@@ -480,12 +531,12 @@ select{
     text-align: center;
     transition: 0.2s;
     min-height: 280px;
-    box-shadow: 0 0 40px #c5cad5;
+    box-shadow: 0 0 20px #c5cad582;
     margin-top: 50px;
     visibility: hidden;
 }
 .highlightbox3:hover{
-  box-shadow: 0px 0px 100px #c5cad5;
+  box-shadow: 0px 0px 60px #c5cad5;
 }
 .highlights img{
   margin-top: 30px;
@@ -515,15 +566,19 @@ footer{
   background-color: #fff;
 }
 footer p{
+  text-align: center;
   position: relative;
   font-family: p;
   font-size: 18px;
-  padding: 100px;
+  padding: 30px;
   color: #004FFF;
 }
 .copyright{
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-style: normal;
+}
+footer a{
+  color: #004FFF;
 }
 
 /* LOADER */
@@ -563,4 +618,24 @@ footer p{
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* NOTICE */
+.notice{
+  width: 100%;
+  background-color: #252525;
+  position: fixed;
+  color: #fff;
+  bottom: 0;
+  padding: 40px;
+  padding-right: 80px;
+  font-size: 16px;
+  z-index: 1000;
+  visibility: visible;
+  transition: 0.2s;
+}
+.notice img{
+  width: 20px;
+  position: absolute;
+  right: 40px;
 }

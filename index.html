@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name = "viewport" content = "with = device-width, initial-scale = 1.0">
-        <meta name="theme-color" content="#004FFF"/>
+        <meta id="pageclr" name="theme-color" content="#004FFF"/>
         <title>NestQuest</title>
         <link rel="icon" type="image/png" href="images/circlelogo.png"/>
         <link rel="stylesheet" href="style.css">
@@ -50,46 +50,40 @@
             <div class="message">
               <div class="hobbies">
                 <h2>First, please tell us about your hobbies.</h2>
-                <div class="options">
-              <div class="row">
-                  <div class="col-md-3">
+                <div class="selections">
+                  <div class="node">
                     <input class="nightlife" type="checkbox" id="nightlife">
                     <label for="nightlife">Nightlife</label>
                   </div>
-                  <div class="col-md-3">
+                  <div class="node">
                     <input class="gyms" type="checkbox" id="gyms">
                     <label for="gyms">Gyms</label>
                   </div>
-                  <div class="col-md-3">
+                  <div class="node">
                     <input class="parks" type="checkbox" id="parks">
                     <label for="parks">Parks</label>
                   </div>
-                  <div class="col-md-3">
+                  <div class="node">
                     <input class="sports" type="checkbox" id="sports">
                     <label for="sports">Sports</label>
                   </div>
-              </div>
-              <div class="options2">
-              <div class="row">
-                  <div class="col-md-3">
+                  <div class="node">
                     <input class="shopping" type="checkbox" id="shopping">
                     <label for="shopping">Shopping</label>
                   </div>
-                  <div class="col-md-3">
+                  <div class="node">
                     <input class="food" type="checkbox" id="food">
                     <label for="food">Food</label>
                   </div>
-                  <div class="col-md-3">
+                  <div class="node">
                     <input class="academics" type="checkbox" id="academics">
                     <label for="academics">Academics</label>
                   </div>
-                  <div class="col-md-3">
+                  <div class="node">
                     <input class="theatre" type="checkbox" id="theatre">
                     <label for="theatre">Theatre</label>
                   </div>
-              </div>
-            </div>
-          </div>
+                </div>
               </div>
               <div class="bedbath">
                 <h2>How many bedrooms and bathrooms must your new home have?</h2>
@@ -199,8 +193,17 @@
         </div>
       </section>
       <footer>
-        <p><i class="copyright">©</i> 2023 Tyler and Eli, The Housing Homies</p>
+        <div class="content">
+          <p><i class="copyright">©</i> 2023 <a href="https://tylerhaisman.com">Tyler</a> and <a href="https://elicampos.com">Eli</a>, The Housing Homies</p>
+        </div>
       </footer>
+      <section id="notice" class="notice">
+        <div class="content">
+          <img id="xout" src="images/x.png" alt="">
+          <p>Hi! This application is currently just a limited working prototype of a housing search service called "NestQuest." The data used is mock data to show how we account for your hobbies in a housing search. We hope you enjoy, and we are looking forward to having the real thing up and running soon!</p>
+          <p><br>-Tyler and Eli</p>
+        </div>
+      </section>
       <script type="text/javascript" src="papaparse.min.js"></script>
     <script src="app.js"></script>
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6yoDV_1HjU2C-xSNFNU6_q2d3aAmjTv0&libraries=places"></script> -->
